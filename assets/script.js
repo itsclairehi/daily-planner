@@ -1,60 +1,3 @@
-//indicate if time is in past, present or future
-
-//generate moment objects for each time
-////generate 9am
-//// append to column
-////loop through all rows somehow
-//put in array timeArr
-
-//make array of times
-// for each item in array, convert to moment object in for loop
-//      append it somehow to the right column? how do you do that? id incrementor?
-
-// timeArr = ["9am", "10am", "11am", "12pm", "1pm", "2pm", "3pm", "4pm", "5pm"]
-// //function that creates moment objects for each time
-// $(timeArr).each( function () {
-//     var times=this
-//     var taskTime = moment(times,"h")
-//     console.log(taskTime)
-
-
-//     if(moment().isAfter(taskTime)) {
-//         $(".time-block").addClass("time-test")
-//     }
-//     if(moment().isSame(taskTime)) {
-//         $(".time-block").addClass("present")
-//     }
-
-// })
-
-
-var testArr = []
-//function that audits times
-function timeAudit() {
-    $(".time-text").each(function () {
-        var taskTime = $(this).text().trim()
-        //push to empty array
-        testArr.push(taskTime)
-
-        $(testArr).each(function () {
-            var times = this
-            var taskTimeM = moment(times, "h")
-            console.log(taskTimeM)
-
-            if (moment().isAfter(taskTimeM)) {
-                $(".task-block").addClass("time-test")
-            }
-            if (moment().isSame(taskTimeM)) {
-                $(".task-block").addClass("present")
-            }
-
-        })
-    })
-}
-
-
-timeAudit()
-
 //update and display current time
 var rightNow = moment().format("MMMM Do, YYYY - hh:mm a");
 console.log(rightNow);
@@ -66,16 +9,54 @@ setInterval(function () {
     // console.log(updatedTime)
     $("#currentDay").text("")
     $("#currentDay").append(updatedTime)
-    // auditTime();
+    // timeAudit();
 }, 1000)
 
 
 
+var hourArr = []
+//function that audits times
+function timeAudit() {
+    //over each hour element
+    $(".hour").each(function () {
+        var taskTime = $(this).text().trim()
+        //push to empty array
+        // hourArr.push(taskTime)
+        
+        // var times = this
+        //convert to moment object
+            var taskTimeM = moment(taskTime, "h a")
+            console.log(taskTimeM)
 
-//save button
+        // $(hourArr).each(function () {
+            
+//how to select corresponding task-block? loop over each time-block and find children instead of each hour
+
+
+            if (moment().isAfter(taskTimeM)) {
+                console.log("past")
+                $(".task-block").removeClass("present future").addClass("past")
+            }
+            if (moment().isSame(taskTimeM)) {
+                console.log("present")
+                $(".task-block").removeClass("time-test future").addClass("present")
+            }
+           else if (moment().isBefore(taskTimeM)) {
+               console.log("future")
+                $(".task-block").removeClass("time-test present").addClass("future")
+            }
+
+        })
+    }
+
+
+timeAudit()
+
+
+//save button each loop
 
 $(".saveBtn").on("click", function () {
-    //get text from its corresponding 
+    
     $()
 })
 console.log("hello")
