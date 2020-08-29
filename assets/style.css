@@ -2,6 +2,7 @@ body {
   font-family: 'Open Sans', sans-serif;
   font-size: 16px;
   line-height: 1;
+  background-color: honeydew;
 }
 
 textarea{
@@ -26,9 +27,9 @@ textarea{
   white-space: pre-wrap;
 }
 
-.time-block{
+.task-block{
   /* text-align: center; */
-  border-radius: 15px;
+  border-radius: 3px;
   
 }
 .saveBtn {
@@ -37,20 +38,23 @@ textarea{
   border-bottom-right-radius: 15px;
   background-color: #06AED5;
   color: white;
-  white-space: nowrap;
+  height: max-content;
+  
+  
   
  
 } 
 
 
 .row {
-  white-space: pre-wrap;
+  /* white-space: pre-wrap; */
   height: 80px;
   border-top: 1px solid white;;
+  margin-bottom: 15px;
 }
 
 .hour {
-  background-color: #ffffff;
+  /* background-color: #ffffff; */
   color: #000000;
   border-top: 1px dashed #000000;
 }
@@ -72,26 +76,29 @@ textarea{
 
  
 
-.saveBtn i:hover {
+.saveBtn:hover {
   font-size: 20px;
   transition: all .3s ease-in-out;
 }
- .col-10 {
-  border: 1px solid black;
-  padding-right: 1px
-}
-
-.col-1, .col-10 {
-  padding-left: 1px;
-  padding-right: 1px
+ .col-sm-10 {
+  border: 1px solid darkslategray;
+  padding-left: 30px
 }
 
 
-
-
-.time-test {
-  background-color: grey
+#tasktime {
+  text-align: center;
+font-weight: bold;
+font-style: italic;
+  
 }
 
+.col-sm-1 {
+  padding-left: 0px;
+  display: inline;
+  
+}
 
-
+.delete-btn-div {
+  justify-content: center;
+}

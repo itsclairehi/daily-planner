@@ -71,3 +71,14 @@ var saveTasks = function (text, taskHour) {
 
 
 loadTasks()
+
+//widen click area for textarea
+$(".task-block").on("click", function(){
+    $(this).find("textarea").trigger("focus")
+})
+
+//delete button
+$(".delete-btn").on("click", function(){
+    $("textarea").val("")
+    localStorage.clear()
+})
