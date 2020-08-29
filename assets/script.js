@@ -9,57 +9,53 @@ setInterval(function () {
     // console.log(updatedTime)
     $("#currentDay").text("")
     $("#currentDay").append(updatedTime)
-    // timeAudit();
-}, 1000)
+    timeAudit();
+}, 10000)
 
 
-
-var hourArr = []
 //function that audits times
 function timeAudit() {
-    //over each hour element
-    $(".hour").each(function () {
-        var taskTime = $(this).text().trim()
-        //push to empty array
-        // hourArr.push(taskTime)
-        
-        // var times = this
-        //convert to moment object
-            var taskTimeM = moment(taskTime, "h a")
-            console.log(taskTimeM)
+    //over each timeblock element
+    $(".time-block").each(function () {
+        var taskTime = $(this).find(".hour").text().trim()
 
-        // $(hourArr).each(function () {
-            
-//how to select corresponding task-block? loop over each time-block and find children instead of each hour
+        var taskTimeM = moment(taskTime, "h a")
+        // console.log(taskTimeM)
 
+        //change color depending on relation to present
+        if (moment().isAfter(taskTimeM)) {
+            console.log("past")
+            $(this).find(".task-block").removeClass("present future").addClass("past")
+        }
 
-            if (moment().isAfter(taskTimeM)) {
-                console.log("past")
-                $(".task-block").removeClass("present future").addClass("past")
-            }
-            if (moment().isSame(taskTimeM)) {
-                console.log("present")
-                $(".task-block").removeClass("time-test future").addClass("present")
-            }
-           else if (moment().isBefore(taskTimeM)) {
-               console.log("future")
-                $(".task-block").removeClass("time-test present").addClass("future")
-            }
+        if (moment().startOf('hour').isSame(taskTimeM)) {
+            console.log("present")
+            $(this).find(".task-block").removeClass("time-test future").addClass("present")
+        }
 
-        })
-    }
+        else if (moment().isBefore(taskTimeM)) {
+            console.log("future")
+            $(this).find(".task-block").removeClass("time-test present").addClass("future")
+        }
+      
+    })
+}
 
 
 timeAudit()
 
-
 //save button each loop
 
 $(".saveBtn").on("click", function () {
-    
-    $()
+    console.log("hello")
+
 })
-console.log("hello")
+
+
+
+
+
+
 
 
 
