@@ -24,41 +24,61 @@ function timeAudit() {
 
         //change color depending on relation to present
         if (moment().isAfter(taskTimeM)) {
-            console.log("past")
+            // console.log("past")
             $(this).find(".task-block").removeClass("present future").addClass("past")
         }
 
         if (moment().startOf('hour').isSame(taskTimeM)) {
-            console.log("present")
+            // console.log("present")
             $(this).find(".task-block").removeClass("time-test future").addClass("present")
         }
 
         else if (moment().isBefore(taskTimeM)) {
-            console.log("future")
+            // console.log("future")
             $(this).find(".task-block").removeClass("time-test present").addClass("future")
         }
       
     })
 }
 
-
 timeAudit()
 
-//save button each loop
-
+//save button each loop .   look at lines 70-97 on taskmaster
+var taskDescription = []
 $(".saveBtn").on("click", function () {
-    console.log("hello")
+var text= $(this).closest(".time-block").children().find("textarea").val().toString()
+//empty and update description
+taskDescription= []
+tasks.description.push(text)
+console.log(taskDescription)
 
 })
 
+//blur event that saves textarea info? does blur include clecking on save button?
 
+$("textarea").on("blur", function(){
+   console.log($(this).val())
 
+})
 
+// tasks={}
 
+//what storage object will look like
+// tasks= [
+//     {
+//         description: "read",
+//         tasktime:"10pm"
+//     },
+//     {
+//         description:,
+//         taskTime: 
+//     },
+//     {
+//         description: "wake up",
+//         taskTime:"9am" ,
+//     },
 
-
-
-
+// ]
 
 
 
