@@ -20,21 +20,18 @@ function timeAudit() {
         var taskTime = $(this).find(".hour").text().trim()
 
         var taskTimeM = moment(taskTime, "h a")
-        // console.log(taskTimeM)
+        
 
         //change color depending on relation to present
         if (moment().isAfter(taskTimeM)) {
-            // console.log("past")
             $(this).find(".task-block").removeClass("present future").addClass("past")
         }
 
         if (moment().startOf('hour').isSame(taskTimeM)) {
-            // console.log("present")
             $(this).find(".task-block").removeClass("time-test future").addClass("present")
         }
 
         else if (moment().isBefore(taskTimeM)) {
-            // console.log("future")
             $(this).find(".task-block").removeClass("time-test present").addClass("future")
         }
       
@@ -43,25 +40,82 @@ function timeAudit() {
 
 timeAudit()
 
-//save button each loop .   look at lines 70-97 on taskmaster
-var taskDescription = []
+//save button
+/
 $(".saveBtn").on("click", function () {
+//get text entered to textarea
 var text= $(this).closest(".time-block").children().find("textarea").val().toString()
-//empty and update description
-taskDescription= []
-tasks.description.push(text)
-console.log(taskDescription)
+//replace text if there's already some?
 
+//get time it was entered to
+var taskHour = $(this).closest(".time-block").find(".hour").text().trim()
+console.log("taskHour " + taskHour)
+//set id maybe
+var textAreaId=$(this).closest(".time-block").find("textarea").attr("id")
+console.log(textAreaId)
+
+
+saveTasks(text, taskHour)
 })
 
-//blur event that saves textarea info? does blur include clecking on save button?
 
-$("textarea").on("blur", function(){
-   console.log($(this).val())
 
-})
+var saveTasks = function (text, taskHour) {
+    localStorage.setItem(taskHour, text);
+  };
 
-// tasks={}
+
+  var loadTasks = function () {
+      $("#nine").val(localStorage.getItem("9am"))
+      $("#ten").val(localStorage.getItem("10am"))
+      $("#eleven").val(localStorage.getItem("11am"))
+      $("#twelve").val(localStorage.getItem("12pm"))
+      $("#one").val(localStorage.getItem("1pm"))
+      $("#two").val(localStorage.getItem("2pm"))
+      $("#three").val(localStorage.getItem("3pm"))
+      $("#four").val(localStorage.getItem("4pm"))
+      $("#five").val(localStorage.getItem("5pm"))
+  }
+        
+    
+
+
+loadTasks()
+
+
+
+
+
+
+
+
+//     console.log($(this))
+// })
+//   }
+//   loadTasks()
+    // if nothing in localStorage, create a new object to track all task status arrays
+//     if (!tasks) {
+//       tasks = {
+//         nineAM: [],
+//         tenAM: [],
+//         elevenAM: [],
+//         twelvePM: [],
+//         onePM: [],
+//         twoPM: [],
+//         threePM: [],
+//         fourPM: [],
+//         fivePM: [],
+//       };
+//     }
+//     // loop over object properties
+//   $.each(tasks, function (list, arr) {
+//     console.log(list, arr);
+//     // then loop over sub-array
+//     arr.forEach(function (task) {
+//       createTask(task.text, task.date, list);
+//     });
+//   });
+// };
 
 //what storage object will look like
 // tasks= [
